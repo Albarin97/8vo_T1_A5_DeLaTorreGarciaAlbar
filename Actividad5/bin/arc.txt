@@ -1,0 +1,104 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+
+public class EjemploEventoCaja extends JFrame{
+	
+	/* En esta 2da forma de implementacion de evcentos no es necesario que los 
+	 * componentes graficos con los cuales se manejan los eventos sean declarados de instancia
+	 */
+	
+	public EjemploEventoCaja() {
+		crearComponentes();
+	}
+	
+	public void crearComponentes() {
+		
+		//Configuracion de la ventana principal
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setTitle("Ejemplo Eventos 2");
+		getContentPane().setLayout(new FlowLayout());
+		setSize(200, 400);
+		setVisible(true);
+		
+		//agregar componentes
+		add(new JLabel("Ingresa Numero"));
+		JTextField cajaNum = new JTextField("",12);
+		add(cajaNum);
+		
+		add(new JLabel("Ingresa Otro Numero"));
+		JTextField cajaNum2 = new JTextField("",12);
+		add(cajaNum2);
+		
+		JButton sum = new JButton("+");
+		add(sum);
+		JButton res = new JButton("-");
+		add(res);
+		JButton div = new JButton("/");
+		add(div);
+		JButton mul = new JButton("*");
+		add(mul);
+		
+		
+		add(new JLabel("Resultado: "));
+		
+		JTextField cajaResultado = new JTextField(10);
+		add(cajaResultado);
+		
+		sum.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cajaResultado.setText(String.valueOf(Double.parseDouble(cajaNum.getText()) + Double.parseDouble(cajaNum2.getText()))); 
+				
+			}
+		});
+		res.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				cajaResultado.setText(String.valueOf(Double.parseDouble(cajaNum.getText()) - Double.parseDouble(cajaNum2.getText()))); 
+				
+			}
+		});
+		mul.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				cajaResultado.setText(String.valueOf(Double.parseDouble(cajaNum.getText()) * Double.parseDouble(cajaNum2.getText()))); 
+				
+			}
+		});
+		div.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				cajaResultado.setText(String.valueOf(Double.parseDouble(cajaNum.getText()) / Double.parseDouble(cajaNum2.getText()))); 
+				
+			}
+		});
+		
+		
+		
+		
+		
+		
+		//el metodo pack se invoca una vez que se agregan los componentes
+		setLocationRelativeTo(null);
+	}
+
+	public static void main(String[] args) {
+		
+		SwingUtilities.invokeLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				new EjemploEventoCaja();
+			}
+		});
+
+	}
+
+}
